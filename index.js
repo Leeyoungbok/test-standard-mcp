@@ -873,9 +873,13 @@ Serena 없이도 동작하지만, 정확도가 낮아집니다(정규식 기반 
   generateTestCodeFromAnalysis(analysis) {
     const template = this.loadServiceTestTemplate();
 
+    // camelCase 변환 (첫 글자만 소문자)
+    const serviceNameLowercase = analysis.className.charAt(0).toLowerCase() + analysis.className.slice(1);
+
     let testCode = template
       .replace(/{{PackageName}}/g, analysis.packageName)
       .replace(/{{ServiceName}}/g, analysis.className)
+      .replace(/{{ServiceName\|lowercase}}/g, serviceNameLowercase)
       .replace(/{{Dependencies}}/g, this.generateDependencyMocksCode(analysis.dependencies));
 
     // 테스트 메서드 생성
@@ -883,7 +887,7 @@ Serena 없이도 동작하지만, 정확도가 낮아집니다(정규식 기반 
     for (const method of analysis.methods) {
       if (method.isPrivate) continue;
 
-      testMethods += this.generateTestMethodCode(method, analysis);
+      testMethods += this.generateTestMethodCode(method, serviceNameLowercase);
     }
 
     testCode = testCode.replace(/{{TestMethods}}/g, testMethods);
@@ -903,7 +907,7 @@ Serena 없이도 동작하지만, 정확도가 낮아집니다(정규식 기반 
   /**
    * 테스트 메서드 코드 생성
    */
-  generateTestMethodCode(method, analysis) {
+  generateTestMethodCode(method, serviceNameLowercase) {
     const successTest = `
     @Test
     @Description("${method.name} - 정상 케이스")
@@ -912,7 +916,7 @@ Serena 없이도 동작하지만, 정확도가 낮아집니다(정규식 기반 
         // TODO: Mock 설정 추가
 
         // When
-        val result = ${analysis.className.toLowerCase()}Impl.${method.name}()
+        val result = ${serviceNameLowercase}Impl.${method.name}()
 
         // Then
         assertNotNull(result)
@@ -928,7 +932,7 @@ Serena 없이도 동작하지만, 정확도가 낮아집니다(정규식 기반 
 
         // When & Then
         assertThrows<Exception> {
-            ${analysis.className.toLowerCase()}Impl.${method.name}()
+            ${serviceNameLowercase}Impl.${method.name}()
         }
     }
 `;
