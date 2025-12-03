@@ -632,3 +632,4 @@ SOFTWARE.
 **마지막 업데이트**: 2025-12-03
 **버전**: 1.0.0
 **상태**: 프로토타입 (Production Ready)
+# test-standard-mcp
