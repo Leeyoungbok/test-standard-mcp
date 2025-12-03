@@ -112,13 +112,14 @@ open ~/Library/Application\ Support/Claude/claude_desktop_config.json
   "mcpServers": {
     "test-standard-mcp": {
       "command": "node",
-      "args": ["/Users/yb/Documents/dev/test-standard-mcp/index.js"]
+      "args": ["~/path/to/test-standard-mcp/index.js"]
     }
   }
 }
 ```
 
-**주의**: `/Users/yb/Documents/dev/test-standard-mcp`를 실제 클론한 경로로 변경하세요.
+**주의**: `~/path/to/test-standard-mcp`를 실제 클론한 경로로 변경하세요.
+예: `~/Documents/dev/test-standard-mcp/index.js`
 
 #### 3. Claude Desktop 재시작
 
@@ -166,7 +167,7 @@ nano ~/.kiro/settings/mcp.json
     },
     "test-standard-mcp": {
       "command": "node",
-      "args": ["/Users/yb/Documents/dev/test-standard-mcp/index.js"],
+      "args": ["~/Documents/dev/test-standard-mcp/index.js"],
       "env": {},
       "timeout": 120000,
       "disabled": false,
@@ -177,7 +178,7 @@ nano ~/.kiro/settings/mcp.json
 ```
 
 **주의**: 
-- 경로를 실제 클론한 경로로 변경하세요
+- `~/Documents/dev/test-standard-mcp`를 실제 클론한 경로로 변경하세요
 - 기존 `mcpServers` 내용을 유지하면서 추가하세요
 
 #### 3. Kiro CLI 재시작
@@ -215,7 +216,7 @@ VS Code 설정 (`settings.json`)에 추가:
   "mcp.servers": {
     "test-standard-mcp": {
       "command": "node",
-      "args": ["/Users/yb/Documents/dev/test-standard-mcp/index.js"]
+      "args": ["~/Documents/dev/test-standard-mcp/index.js"]
     }
   }
 }
@@ -290,10 +291,11 @@ npm install
 **해결**:
 ```bash
 # 실제 경로 확인
+cd ~/Documents/dev/test-standard-mcp
 pwd
-# 출력: /Users/yb/Documents/dev/test-standard-mcp
 
-# 설정 파일에서 이 경로를 정확히 사용
+# 설정 파일에서 ~ 기준 상대 경로 사용
+# 예: ~/Documents/dev/test-standard-mcp/index.js
 ```
 
 ### 4. "Permission denied"
@@ -302,7 +304,7 @@ pwd
 
 **해결**:
 ```bash
-chmod +x /Users/yb/Documents/dev/test-standard-mcp/index.js
+chmod +x ~/Documents/dev/test-standard-mcp/index.js
 ```
 
 ### 5. Kiro CLI에서 도구가 보이지 않음

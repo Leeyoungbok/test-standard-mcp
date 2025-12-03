@@ -252,7 +252,7 @@ Kiro CLI의 MCP 설정 파일 (`~/.kiro/settings/mcp.json`)에 추가:
   "mcpServers": {
     "test-standard-mcp": {
       "command": "node",
-      "args": ["/Users/yb/Documents/dev/test-standard-mcp/index.js"],
+      "args": ["~/Documents/dev/test-standard-mcp/index.js"],
       "env": {},
       "timeout": 120000,
       "disabled": false,
@@ -261,6 +261,8 @@ Kiro CLI의 MCP 설정 파일 (`~/.kiro/settings/mcp.json`)에 추가:
   }
 }
 ```
+
+**주의**: `~/Documents/dev/test-standard-mcp`를 실제 클론한 경로로 변경하세요.
 
 **설정 후 Kiro CLI 재시작:**
 
