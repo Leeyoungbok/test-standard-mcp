@@ -1,0 +1,52 @@
+{
+  "name": "@oliveyoung/test-standard-mcp",
+  "version": "1.1.0",
+  "description": "MCP server for automated test code generation and validation with self-verification loop. Requires Serena MCP (https://github.com/oraios/serena) for code analysis.",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "test-standard-mcp": "./index.js"
+  },
+  "files": [
+    "index.js",
+    "standards/",
+    "README.md",
+    "CHANGELOG.md",
+    "DEPLOYMENT.md"
+  ],
+  "scripts": {
+    "start": "node index.js",
+    "test": "node --test",
+    "lint": "eslint ."
+  },
+  "keywords": [
+    "mcp",
+    "test",
+    "kotlin",
+    "spring-boot",
+    "mockk",
+    "test-automation",
+    "oliveyoung"
+  ],
+  "author": "Oliveyoung Test Team",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.5.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.50.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oliveyoung/test-standard-mcp.git"
+  },
+  "mcp": {
+    "version": "1.0",
+    "capabilities": {
+      "tools": true
+    }
+  }
+}
