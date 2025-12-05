@@ -50,17 +50,18 @@ npm install
 # 실행 권한 부여
 chmod +x index.js
 
-# Claude Desktop 설정
-echo "⚙️  Claude Desktop 설정 중..."
+# MCP 클라이언트 설정
+echo "⚙️  MCP 클라이언트 설정 중..."
 
 if [ ! -f "$CONFIG_FILE" ]; then
     echo "⚠️  Claude Desktop 설정 파일을 찾을 수 없습니다."
-    echo "   Claude Desktop이 설치되어 있는지 확인하세요."
+    echo "   다른 MCP 클라이언트(Amazon Q, VS Code 등)를 사용하는 경우"
+    echo "   해당 클라이언트의 설정 파일에 수동으로 추가하세요."
     echo ""
     echo "📝 설치 위치: $INSTALL_DIR"
     echo ""
-    echo "수동 설정 방법:"
-    echo "1. Claude Desktop 설정 파일 생성: $CONFIG_FILE"
+    echo "수동 설정 방법 (Claude Desktop):"
+    echo "1. 설정 파일 생성: $CONFIG_FILE"
     echo "2. 다음 내용 추가:"
     echo ""
     echo '{'
@@ -82,9 +83,9 @@ if ! command -v jq &> /dev/null; then
     echo "⚠️  jq가 설치되어 있지 않습니다."
     echo "   설치: brew install jq"
     echo ""
-    echo "📝 수동으로 Claude Desktop 설정을 추가해주세요:"
+    echo "📝 수동으로 MCP 클라이언트 설정을 추가해주세요:"
     echo ""
-    echo "파일: $CONFIG_FILE"
+    echo "파일: $CONFIG_FILE (Claude Desktop)"
     echo ""
     echo '"test-standard-mcp": {'
     echo '  "command": "node",'
@@ -94,7 +95,7 @@ if ! command -v jq &> /dev/null; then
 fi
 
 # JSON 업데이트
-echo "📝 Claude Desktop 설정 업데이트 중..."
+echo "📝 MCP 클라이언트 설정 업데이트 중..."
 
 # mcpServers 객체가 없으면 생성
 if ! jq -e '.mcpServers' "$CONFIG_FILE" > /dev/null 2>&1; then
@@ -118,9 +119,12 @@ echo "📍 설치 위치: $INSTALL_DIR"
 echo "📝 설정 파일: $CONFIG_FILE"
 echo ""
 echo "🔄 다음 단계:"
-echo "1. Claude Desktop을 완전히 종료하세요 (Cmd+Q)"
-echo "2. Claude Desktop을 다시 실행하세요"
-echo "3. 새 대화에서 다음과 같이 테스트하세요:"
+echo "1. MCP 클라이언트를 재시작하세요:"
+echo "   - Claude Desktop: 완전히 종료 (Cmd+Q) 후 재실행"
+echo "   - Amazon Q: IDE 재시작"
+echo "   - VS Code: Reload Window (Cmd+Shift+P → Reload Window)"
+echo ""
+echo "2. 새 대화에서 다음과 같이 테스트하세요:"
 echo '   사용자: "test-standard-mcp 도구를 사용할 수 있어?"'
 echo ""
 echo "📚 사용 가이드: https://github.com/Leeyoungbok/test-standard-mcp"

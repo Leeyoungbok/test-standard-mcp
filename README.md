@@ -21,17 +21,25 @@ git clone https://github.com/Leeyoungbok/test-standard-mcp.git && cd test-standa
 curl -fsSL https://raw.githubusercontent.com/Leeyoungbok/test-standard-mcp/main/remote-install.sh | bash
 ```
 
-설치 후 Claude Desktop을 재시작하면 바로 사용 가능합니다!
+설치 후 **MCP 클라이언트를 재시작**하면 바로 사용 가능합니다!
 
 **사용 예시:**
 ```
 사용자: CommonServiceImpl의 테스트 코드를 생성하고 검증해줘
 
-Claude: generate_unit_test 도구를 사용하겠습니다...
+AI 어시스턴트: generate_unit_test 도구를 사용하겠습니다...
 ✅ 테스트 생성 완료
 ✅ 컴파일 성공
 ✅ 테스트 통과 (10개 메서드)
 ```
+
+**지원 MCP 클라이언트:**
+- 🤖 Claude Desktop (Anthropic)
+- 🔍 Amazon Q Developer
+- 💻 VS Code (MCP Extension)
+- ⚡ Cursor IDE
+- 🎯 Zed Editor
+- 🛠️ 기타 MCP 프로토콜 호환 클라이언트
 
 ---
 
@@ -234,7 +242,7 @@ JaCoCo 리포트 자동 생성 및 커버리지 확인:
 ### 선택 사항
 
 - **Git**: 버전 관리
-- **Claude Desktop**: MCP 도구 사용을 위한 클라이언트
+- **MCP 클라이언트**: Claude Desktop, Amazon Q, VS Code 등
 
 ---
 
@@ -267,8 +275,10 @@ cd test-standard-mcp
 
 설치 스크립트가 자동으로:
 - ✅ Node.js 의존성 설치
-- ✅ Kiro CLI 설정 자동 추가
-- ✅ Claude Desktop 설정 자동 추가
+- ✅ 다양한 MCP 클라이언트 설정 자동 추가
+  - Claude Desktop
+  - Kiro CLI
+  - (기타 클라이언트는 수동 설정)
 - ✅ 백업 파일 생성
 
 **설치 후 MCP 클라이언트만 재시작하면 바로 사용 가능합니다!**
@@ -286,7 +296,7 @@ cd serena
 # 2. Python 패키지 설치
 pip install -e .
 
-# 3. Claude Desktop에 등록 (DEPLOYMENT.md 참고)
+# 3. MCP 클라이언트에 등록 (DEPLOYMENT.md 참고)
 ```
 
 **이미 설치되어 있다면 이 단계를 건너뛰세요.**
@@ -306,8 +316,10 @@ cd test-standard-mcp
 ./install.sh
 
 # 3. MCP 클라이언트 재시작
+# - Claude Desktop: 앱 재시작 (Cmd+Q 후 재실행)
+# - Amazon Q: IDE 재시작
+# - VS Code: Reload Window (Cmd+Shift+P → Reload Window)
 # - Kiro CLI: /quit 후 kiro-cli chat
-# - Claude Desktop: 앱 재시작
 ```
 
 **수동 설치를 원하는 경우:**
@@ -330,9 +342,11 @@ npm install
 npm install -g @oliveyoung/test-standard-mcp
 ```
 
-### Claude Desktop에서 설정
+### MCP 클라이언트별 설정
 
-Claude Desktop의 MCP 설정 파일 (`~/Library/Application Support/Claude/claude_desktop_config.json`)에 추가:
+#### 1. Claude Desktop (Anthropic)
+
+설정 파일: `~/Library/Application Support/Claude/claude_desktop_config.json`
 
 ```json
 {
@@ -345,19 +359,41 @@ Claude Desktop의 MCP 설정 파일 (`~/Library/Application Support/Claude/claud
 }
 ```
 
-또는 전역 설치한 경우:
+#### 2. Amazon Q Developer
+
+설정 파일: 프로젝트의 `.mcp/config.json` 또는 전역 설정
 
 ```json
 {
   "mcpServers": {
     "test-standard-mcp": {
-      "command": "test-standard-mcp"
+      "command": "node",
+      "args": ["/path/to/test-standard-mcp/index.js"]
     }
   }
 }
 ```
 
-Claude Desktop을 재시작하면 MCP 도구가 활성화됩니다.
+#### 3. VS Code (MCP Extension)
+
+VS Code 설정 (`settings.json`)에 추가:
+
+```json
+{
+  "mcp.servers": {
+    "test-standard-mcp": {
+      "command": "node",
+      "args": ["/path/to/test-standard-mcp/index.js"]
+    }
+  }
+}
+```
+
+#### 4. Cursor IDE
+
+Cursor 설정에서 MCP 서버 추가 (Claude Desktop과 동일한 설정 파일 사용)
+
+**설정 후 클라이언트를 재시작하면 MCP 도구가 활성화됩니다.**
 
 ### MCP 클라이언트 설정 (수동)
 
