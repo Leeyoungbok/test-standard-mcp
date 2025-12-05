@@ -7,6 +7,34 @@
 
 ---
 
+## 🚀 Quick Start
+
+**단 한 줄로 설치:**
+
+```bash
+git clone https://github.com/Leeyoungbok/test-standard-mcp.git && cd test-standard-mcp && ./install.sh
+```
+
+**또는 원격 설치:**
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/Leeyoungbok/test-standard-mcp/main/remote-install.sh | bash
+```
+
+설치 후 Claude Desktop을 재시작하면 바로 사용 가능합니다!
+
+**사용 예시:**
+```
+사용자: CommonServiceImpl의 테스트 코드를 생성하고 검증해줘
+
+Claude: generate_unit_test 도구를 사용하겠습니다...
+✅ 테스트 생성 완료
+✅ 컴파일 성공
+✅ 테스트 통과 (10개 메서드)
+```
+
+---
+
 ## 📋 목차
 
 - [소개](#소개)
@@ -211,6 +239,21 @@ JaCoCo 리포트 자동 생성 및 커버리지 확인:
 ---
 
 ## 설치
+
+### ⚡ 원라이너 설치 (가장 빠름)
+
+**단 한 줄로 설치 완료:**
+
+```bash
+git clone https://github.com/Leeyoungbok/test-standard-mcp.git && cd test-standard-mcp && ./install.sh
+```
+
+또는 **curl을 사용한 원격 설치** (향후 지원):
+
+```bash
+# GitHub에서 직접 다운로드 + 설치
+curl -fsSL https://raw.githubusercontent.com/Leeyoungbok/test-standard-mcp/main/install.sh | bash
+```
 
 ### 빠른 설치 (권장)
 
